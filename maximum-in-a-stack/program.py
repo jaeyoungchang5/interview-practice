@@ -1,21 +1,29 @@
 #!/usr/bin/env python3
 
+'''
+Maximum In A Stack:
+Implement a class for a stack that supports all the regular functions (push, pop) 
+and an additional function of max() which returns the maximum element in the stack (return None if the stack is empty). 
+Each method should run in constant time.
+'''
+
 class MaxStack:
     def __init__(self):
         self.stack = []
+        self.maximum = [0]
 
     def push(self, val):
         self.stack.append(val)
+        if val > self.maximum[-1]:
+            self.maximum.append(val)
     
     def pop(self):
-        self.stack.pop()
+        val = self.stack.pop()
+        if val == self.maximum[-1]:
+            self.maximum.pop()
 
     def max(self):
-        maximum = 0
-        for element in self.stack:
-            if element > maximum:
-                maximum = element
-        return maximum
+        return self.maximum[-1]
 
 
 def main():
